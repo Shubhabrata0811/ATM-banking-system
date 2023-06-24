@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "SignUpSecond",
+            "request": "launch",
+            "mainClass": "atm.management.system.SignUpSecond",
+            "projectName": "ATM-banking-system_be5cc411"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

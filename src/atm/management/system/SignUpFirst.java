@@ -15,13 +15,37 @@ import com.toedter.calendar.*;
 
 
 
+
 public class SignUpFirst extends JFrame implements ActionListener{
+
+    //generate an unique Application Number according to date and time
+    public static LocalDateTime currentDateTime = LocalDateTime.now();
+    public static long formatedDatetime = Long.parseLong(currentDateTime.format(DateTimeFormatter.ofPattern("yyyyMMddHHmm")));
+    public static final long appNo = formatedDatetime;
 
     JTextField firstNameField = new JTextField();
     JTextField lastNameField = new JTextField();
     JTextField fathersNameField = new JTextField();
     JTextField emailAddField = new JTextField();
     JTextField conNoField = new JTextField();
+
+    JDateChooser dateChooser = new JDateChooser();
+
+    JRadioButton male = new JRadioButton("Male");
+    JRadioButton female = new JRadioButton("Female");
+    JRadioButton gOthers = new JRadioButton("Others");
+
+    JRadioButton married = new JRadioButton("Married");
+    JRadioButton unmarried = new JRadioButton("Unmarried");
+    JRadioButton msOthers = new JRadioButton("Others");
+
+    ButtonGroup gGroup = new ButtonGroup();
+    ButtonGroup msGroup = new ButtonGroup();
+
+    JButton cancelButton = new JButton("Cancel");
+    JButton clearButton = new JButton("Clear");
+    JButton nextPageButton = new JButton("Next");
+
     
 
     public SignUpFirst(){
@@ -29,149 +53,147 @@ public class SignUpFirst extends JFrame implements ActionListener{
         setLayout(null);
 
         /*----------------------------Add Text Parts----------------------------*/
-        JLabel heading = new JLabel("Personal Details: General");
+        JLabel heading = new JLabel("Welcome to ATM System!");
         heading.setFont(new Font("Osward",Font.BOLD,28));
-        heading.setBounds(250, 20,500,40);
+        heading.setBounds(230, 10,500,40);
         add(heading);
 
-        //generate an unique Application Number according to date and time
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        final long formatedDatetime = Long.parseLong(currentDateTime.format(DateTimeFormatter.ofPattern("yyyyMMddHHmm")));
-        JLabel applicationNoLabel = new JLabel("Application No:"+formatedDatetime);
-        applicationNoLabel.setFont(new Font("Osward",Font.BOLD,18));
-        applicationNoLabel.setBounds(280, 55,500,40);
-        add(applicationNoLabel); 
+        JLabel tyHeading = new JLabel("Thankyou for choosing our service...");
+        tyHeading.setFont(new Font("Osward",Font.BOLD,24));
+        tyHeading.setBounds(200, 45,500,40);
+        add(tyHeading);
+
+        JLabel subHeading = new JLabel("Personal Details: General");
+        subHeading.setFont(new Font("Osward",Font.BOLD,16));
+        subHeading.setBounds(100, 85,300,40);
+        add(subHeading);
+
+        JLabel applicationNoLabel = new JLabel("Application No:"+appNo);
+        applicationNoLabel.setFont(new Font("Osward",Font.BOLD,16));
+        applicationNoLabel.setBounds(450, 85,500,40);
+        add(applicationNoLabel);
 
         /*----------------------------Add Credentials spaces----------------------------*/
 
         JLabel firstName = new JLabel("First Name:");
         firstName.setFont(new Font("Osward",Font.BOLD,18));
-        firstName.setBounds(50, 120,110,40);
+        firstName.setBounds(50, 130,110,40);
         add(firstName);
 
         
         firstNameField.setFont(new Font("Osward",Font.BOLD,18));
-        firstNameField.setBounds(220, 125,450,30);
+        firstNameField.setBounds(220, 135,450,30);
         add(firstNameField);
 
         JLabel lastName = new JLabel("Last Name:");
         lastName.setFont(new Font("Osward",Font.BOLD,18));
-        lastName.setBounds(50, 170,100,40);
+        lastName.setBounds(50, 180,100,40);
         add(lastName);
 
         
         lastNameField.setFont(new Font("Osward",Font.BOLD,18));
-        lastNameField.setBounds(220, 175,450,30);
+        lastNameField.setBounds(220, 185,450,30);
         add(lastNameField);
 
         JLabel fathersName = new JLabel("Father's Name:");
         fathersName.setFont(new Font("Osward",Font.BOLD,18));
-        fathersName.setBounds(50, 220,150,40);
+        fathersName.setBounds(50, 230,150,40);
         add(fathersName);
 
         
         fathersNameField.setFont(new Font("Osward",Font.BOLD,18));
-        fathersNameField.setBounds(220, 225,450,30);
+        fathersNameField.setBounds(220, 235,450,30);
         add(fathersNameField);
 
         JLabel dob = new JLabel("Date of Birth:");
         dob.setFont(new Font("Osward",Font.BOLD,18));
-        dob.setBounds(50, 270,150,40);
+        dob.setBounds(50, 280,150,40);
         add(dob);
 
-        JDateChooser dateChooser = new JDateChooser();
-        dateChooser.setBounds(220, 275,450,30);
+        dateChooser.setBounds(220, 285,450,30);
         add(dateChooser);
 
         JLabel gender = new JLabel("Gender:");
         gender.setFont(new Font("Osward",Font.BOLD,18));
-        gender.setBounds(50, 320,150,40);
+        gender.setBounds(50, 330,150,40);
         add(gender);
 
-        JRadioButton male = new JRadioButton("Male");
         male.setFont(new Font("Osward",Font.BOLD,16));
-        male.setBounds(220, 320,100,40);
+        male.setBounds(220, 330,100,40);
         add(male);
 
-        JRadioButton female = new JRadioButton("Female");
         female.setFont(new Font("Osward",Font.BOLD,16));
-        female.setBounds(350, 320,100,40);
+        female.setBounds(350, 330,100,40);
         add(female);
 
-        JRadioButton gOthers = new JRadioButton("Others");
         gOthers.setFont(new Font("Osward",Font.BOLD,16));
-        gOthers.setBounds(510, 320,150,40);
+        gOthers.setBounds(510, 330,150,40);
         add(gOthers);
 
-        ButtonGroup gGroup = new ButtonGroup();
         gGroup.add(male);
         gGroup.add(female);
         gGroup.add(gOthers);
 
         JLabel mStatus = new JLabel("Marital Status:");
         mStatus.setFont(new Font("Osward",Font.BOLD,18));
-        mStatus.setBounds(50, 370,150,40);
+        mStatus.setBounds(50, 380,150,40);
         add(mStatus);
 
-        JRadioButton married = new JRadioButton("Married");
         married.setFont(new Font("Osward",Font.BOLD,16));
-        married.setBounds(220, 370,100,40);
+        married.setBounds(220, 380,100,40);
         add(married);
 
-        JRadioButton unmarried = new JRadioButton("Unmarried");
         unmarried.setFont(new Font("Osward",Font.BOLD,16));
-        unmarried.setBounds(350, 370,150,40);
+        unmarried.setBounds(350, 380,150,40);
         add(unmarried);
 
-        JRadioButton msOthers = new JRadioButton("Others");
         msOthers.setFont(new Font("Osward",Font.BOLD,16));
-        msOthers.setBounds(510, 370,150,40);
+        msOthers.setBounds(510, 380,150,40);
         add(msOthers);
 
-        ButtonGroup msGroup = new ButtonGroup();
         msGroup.add(married);
         msGroup.add(unmarried);
         msGroup.add(msOthers);
 
         JLabel conNo = new JLabel("Contact No:");
         conNo.setFont(new Font("Osward",Font.BOLD,18));
-        conNo.setBounds(50, 420,150,40);
+        conNo.setBounds(50, 430,150,40);
         add(conNo);
 
         conNoField.setFont(new Font("Osward",Font.BOLD,18));
-        conNoField.setBounds(220, 425,450,30);
+        conNoField.setBounds(220, 435,450,30);
         add(conNoField);
 
         JLabel emailAdd = new JLabel("Email Address:");
         emailAdd.setFont(new Font("Osward",Font.BOLD,18));
-        emailAdd.setBounds(50, 470,150,40);
+        emailAdd.setBounds(50, 480,150,40);
         add(emailAdd);
 
         emailAddField.setFont(new Font("Osward",Font.BOLD,18));
-        emailAddField.setBounds(220, 475,450,30);
+        emailAddField.setBounds(220, 485,450,30);
         add(emailAddField);
 
 
-        JButton cancel = new JButton("Cancel");
-        cancel.setBackground(Color.RED);
-        cancel.setForeground(Color.WHITE);
-        cancel.setFont(new Font("Osward",Font.BOLD,18));
-        cancel.setBounds(220,525,125,35);
-        add(cancel);
+        cancelButton.setBackground(Color.RED);
+        cancelButton.setForeground(Color.WHITE);
+        cancelButton.setFont(new Font("Osward",Font.BOLD,18));
+        cancelButton.setBounds(220,535,125,35);
+        cancelButton.addActionListener(this);
+        add(cancelButton);
 
-        JButton nextPage = new JButton("Next");
-        nextPage.setBackground(Color.GREEN);
-        nextPage.setForeground(Color.WHITE);
-        nextPage.setFont(new Font("Osward",Font.BOLD,18));
-        nextPage.setBounds(520,525,125,35);
-        add(nextPage);
+        nextPageButton.setBackground(Color.GREEN);
+        nextPageButton.setForeground(Color.WHITE);
+        nextPageButton.setFont(new Font("Osward",Font.BOLD,18));
+        nextPageButton.setBounds(520,535,125,35);
+        nextPageButton.addActionListener(this);
+        add(nextPageButton);
 
-        JButton clear = new JButton("Clear");
-        clear.setBackground(Color.BLACK);
-        clear.setForeground(Color.WHITE);
-        clear.setFont(new Font("Osward",Font.BOLD,16));
-        clear.setBounds(370,525,125,35);
-        add(clear);
+        clearButton.setBackground(Color.BLACK);
+        clearButton.setForeground(Color.WHITE);
+        clearButton.setFont(new Font("Osward",Font.BOLD,16));
+        clearButton.setBounds(370,535,125,35);
+        clearButton.addActionListener(this);
+        add(clearButton);
 
 
         /*----------------------------set the frame----------------------------*/
@@ -186,9 +208,118 @@ public class SignUpFirst extends JFrame implements ActionListener{
    
 
     public void actionPerformed(ActionEvent ae){
+        if(ae.getSource()==cancelButton){
+            setVisible(false);
+            new Login().setVisible(true);
+
+        }
+        else if(ae.getSource()==clearButton){
+            firstNameField.setText("");
+            lastNameField.setText("");
+            fathersNameField.setText("");
+            dateChooser.setDate(null);
+            msGroup.clearSelection();
+            gGroup.clearSelection();
+            emailAddField.setText("");
+            conNoField.setText("");
+        }
+        else if(ae.getSource()==nextPageButton){
+            String appNoDB = ""+ appNo;
+            String firstNameDB = firstNameField.getText();
+            String lastNameDB = lastNameField.getText();
+            String fathersNameDB = fathersNameField.getText();
+            String genderDB = new String("");
+            String mstatusDB = new String("");
+            String conNoDB = conNoField.getText();
+            String emailAddDB = emailAddField.getText();
+            java.util.Date dob = dateChooser.getDate();
+            java.sql.Date dobDB = null;
+            if(dob == null)
+            {
+                JOptionPane.showMessageDialog(null,"Date of Birth is required!");
+            }
+            else{
+                dobDB =new java.sql.Date(dob.getTime());
+            }
+
+
+            boolean valid = true;
+            try{
+                if (firstNameDB.equals("")){
+                    JOptionPane.showMessageDialog(null,"First Name required!");
+                    valid = false;
+                }
+                
+                if (lastNameDB.equals("")){
+                    JOptionPane.showMessageDialog(null,"Last Name required!");
+                    valid = false;
+                }
+
+                if (fathersNameDB.equals("")){
+                    JOptionPane.showMessageDialog(null,"Father's Name required!");
+                    valid = false;
+                }
+
+                //Gender
+                if(male.isSelected()){
+                genderDB ="Male";
+                }
+                else if(female.isSelected()){
+                    genderDB ="Female";
+                }
+                else if(gOthers.isSelected()){
+                    genderDB ="Others";
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Please select your gender!");
+                    valid = false;
+                }
+
+                //Marital status
+                if(married.isSelected()){
+                mstatusDB ="Married";
+                }
+                else if(unmarried.isSelected()){
+                    mstatusDB ="Unmarried";
+                }
+                else if(msOthers.isSelected()){
+                    mstatusDB ="Others";
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Please select your marital status!");
+                    valid = false;
+                }
+            
+                if (emailAddDB.equals("")){
+                    JOptionPane.showMessageDialog(null,"Email address required!");
+                    valid = false;
+                }
+
+                if (conNoDB.equals("")){
+                    JOptionPane.showMessageDialog(null,"Contact Number required!");
+                    valid = false;
+                }
+
+                if(valid){
+                    //Enter data to Data Base
+                    DBconnection dbconn = new DBconnection();
+                    String querry = "insert into signupgeneral values('"+appNoDB+"','"+firstNameDB+"','"+lastNameDB+"','"+fathersNameDB+"','"+dobDB+"','"+genderDB+"','"+mstatusDB+"','"+conNoDB+"','"+emailAddDB+"');";
+                    dbconn.stat.executeUpdate(querry);
+                }
+            }
+            catch(Exception ex){
+                valid = false;
+                System.out.println(ex);
+            }
+            if(valid){
+                setVisible(false);
+                new SignUpSecond().setVisible(true);
+            }
+
+        }
     }
 
-    public static void main(String arg[]){
+    public static void main(String[] arg){
         
         new SignUpFirst();
     }
